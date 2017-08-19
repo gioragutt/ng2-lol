@@ -1,0 +1,44 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  // max-height: 500px;
+  min-width: 300px;
+}
+
+.example-header {
+  color: rgba(0,0,0,.87);
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+mat-input-container {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+md-table {
+  overflow: auto;
+}
+
+.platform-champions-table {
+  .champion-image {
+    height: 45px;
+  }
+  .champion-active,
+  .champion-free-to-play, 
+  .champion-bot-enabled,
+  .chamption-bot-mm-enabled {
+    &.true {
+      color: green;
+    }
+
+    &.false {
+      color: red;
+    }
+  }
+}

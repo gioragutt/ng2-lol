@@ -1,0 +1,61 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter users">
+    </md-input-container>
+  </div>
+  <md-table [dataSource]="dataSource" mdSort color="secondary" class="platform-champions-table">
+    <ng-container cdkColumnDef="image">
+      <md-header-cell *cdkHeaderCellDef>#</md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <img class="champion-image" [src]="championImage(row.data.image.full)"/>
+      </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="id">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Id</md-header-cell>
+      <md-cell *cdkCellDef="let row">{{row.id}}</md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="name">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Name</md-header-cell>
+      <md-cell *cdkCellDef="let row">{{row.data.name}}</md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="title">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Title</md-header-cell>
+      <md-cell *cdkCellDef="let row">{{row.data.title | titlecase}}</md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="active">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Active</md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <span class="champion-active" [class.true]="row.active" [class.false]="!row.active">{{row.active}}</span>
+      </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="freeToPlay">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Free To Play</md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <span class="champion-free-to-play" [class.true]="row.freeToPlay">{{row.freeToPlay}}</span>
+      </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="botEnabled">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Bot Enabled</md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <span class="champion-bot-enabled" [class.true]="row.botEnabled">{{row.botEnabled}}</span>
+      </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="botMmEnabled">
+      <md-header-cell *cdkHeaderCellDef md-sort-header>Bot MM Enabled</md-header-cell>
+      <md-cell *cdkCellDef="let row">
+        <span class="champion-bot-mm-enabled" [class.true]="row.botMmEnabled">{{row.botMmEnabled}}</span>
+      </md-cell>
+    </ng-container>
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;" [style.background]="row.freeToPlay ? 'lightgreen' : 'inherit'"></md-row>
+  </md-table>
+</div>
