@@ -10,17 +10,17 @@ const mapping: Map<string, string> = new Map([
     ['attackspeedperlevel', 'attack speed per level'],
     ['crit', 'crit'],
     ['critperlevel', 'crit per level'],
-    ['hp', 'health points'],
-    ['hpperlevel', 'health points per level'],
-    ['hpregen', 'health points regeneration'],
-    ['hpregenperlevel', 'health points regeneration per level'],
+    ['hp', 'hp'],
+    ['hpperlevel', 'hp per level'],
+    ['hpregen', 'hp regeneration'],
+    ['hpregenperlevel', 'hp regeneration per level'],
     ['movespeed', 'move speed'],
     ['mp', 'mana'],
     ['mpperlevel', 'mana per level'],
     ['mpregen', 'mana regen'],
     ['mpregenperlevel', 'mana regen per level'],
-    ['spellblock', 'magic resistance'],
-    ['spellblockperlevel', 'magic resistance per level']
+    ['spellblock', 'mr'],
+    ['spellblockperlevel', 'mr per level']
 ]);
 
 @Pipe({
