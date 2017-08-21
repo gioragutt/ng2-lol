@@ -42,6 +42,7 @@ export class ChampionSpellsComponent implements OnInit {
       switch (link) {
         case 'attackdamage': return 'AD';
         case 'spelldamage': return 'AP';
+        case 'bonusattackdamage': return 'bonus AD';
         default: return link;
       }
     };
