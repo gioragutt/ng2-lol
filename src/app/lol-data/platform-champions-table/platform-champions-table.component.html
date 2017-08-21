@@ -23,11 +23,6 @@
       <md-cell *cdkCellDef="let row">{{row.data.name}}</md-cell>
     </ng-container>
 
-    <ng-container cdkColumnDef="title">
-      <md-header-cell *cdkHeaderCellDef md-sort-header>Title</md-header-cell>
-      <md-cell *cdkCellDef="let row">{{row.data.title | titlecase}}</md-cell>
-    </ng-container>
-
     <ng-container cdkColumnDef="active">
       <md-header-cell *cdkHeaderCellDef md-sort-header>Active</md-header-cell>
       <md-cell *cdkCellDef="let row">

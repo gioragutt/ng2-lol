@@ -65,7 +65,6 @@ export class PlatformChampionsDataSource extends DataSource<ChampionView> {
           case 'image': return champ.data.image.full;
           case 'id': return champ.id;
           case 'name': return champ.data.name;
-          case 'title': return champ.data.title;
           case 'active': return champ.active;
           case 'freeToPlay': return champ.freeToPlay;
           case 'botEnabled': return champ.botEnabled;
@@ -100,7 +99,7 @@ export class PlatformChampionsDataSource extends DataSource<ChampionView> {
   styleUrls: ['./platform-champions-table.component.scss'],
 })
 export class PlatformChampionsTableComponent implements OnInit {
-  displayedColumns = ['image', 'id', 'name', 'title', 'active', 'freeToPlay', 'botEnabled', 'botMmEnabled'];
+  displayedColumns = ['image', 'id', 'name', 'active', 'freeToPlay', 'botEnabled', 'botMmEnabled'];
   public dataSource: PlatformChampionsDataSource;
 
   @ViewChild('filter') filter: ElementRef;
