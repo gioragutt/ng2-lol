@@ -1,10 +1,11 @@
-import { Component, OnInit, Injectable, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Injectable, ViewChild, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk';
 import { MdSort } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { RiotApi } from '../lol-api';
-import { ChampionDto, StaticChampionDto } from '../lol-api/dto';
+import { RiotApi } from '../../lol-api';
+import { ChampionDto, StaticChampionDto, ChampionView } from '../../lol-api/dto';
+import { Router } from '@angular/router';
 
 export class PlatformChampionsDataSource extends DataSource<ChampionView> {
   private dataChange = new BehaviorSubject<ChampionView[]>([]);
@@ -105,10 +106,14 @@ export class PlatformChampionsTableComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   @ViewChild(MdSort) sort: MdSort;
 
-  constructor(private riot: RiotApi) { }
+  constructor(private riot: RiotApi, private router: Router, private changeDetectionHack: ChangeDetectorRef) { }
 
   public championImage(path: string): string {
     return this.riot.championImageUrl(path);
+  }
+
+  public redirectToChampionPage(id: number): void {
+    this.router.navigate(['champions', id]);
   }
 
   ngOnInit(): void {
@@ -123,9 +128,7 @@ export class PlatformChampionsTableComponent implements OnInit {
       console.log(`New filter value`, newFilterValue);
       this.dataSource.filter = newFilterValue;
     });
-  }
-}
 
-interface ChampionView extends ChampionDto {
-  data: StaticChampionDto;
+    this.changeDetectionHack.detectChanges();
+  }
 }

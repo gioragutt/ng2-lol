@@ -1,0 +1,15 @@
+<ng-template *ngIf="isLoading; then loading else loaded"></ng-template>
+<ng-template #loading>
+  <div>
+    Loading, please wait...
+  </div>
+</ng-template>
+<ng-template #loaded *ngIf="isIdInvalid; then invalidId else championView"></ng-template>
+<ng-template #invalidId>
+  <div>
+    Id {{id}} is invalid!
+  </div>
+</ng-template>
+<ng-template #championView>
+  <app-champion-info-page [champion]="champion"></app-champion-info-page>
+</ng-template>

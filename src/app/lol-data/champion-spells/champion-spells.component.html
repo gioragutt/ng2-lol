@@ -1,0 +1,41 @@
+<div class="spell-card-container">
+  <md-card *ngFor="let spell of spells" class="spell-card">
+    <md-card-header>
+      <img md-card-avatar [src]="spell.imageUrl" />
+      <md-card-title>
+        <h4>{{spell.name}}</h4>
+      </md-card-title>
+    </md-card-header>
+    <md-card-content>
+      <h6 class="spell-description">Description</h6>
+      <p>
+        {{spell.sanitizedDescription}}
+      </p>
+      <h6 class="spell-description">Tooltip</h6>
+      <p>
+        {{spell.processedTooltip}}
+      </p>
+      <md-list>
+
+        <h3 md-subheader>Cooldown</h3>
+        <md-list-item>
+          <md-icon md-list-icon color="warn" [mdTooltip]="spell.cooldownBurn | spaceOutBurnout" mdTooltipPosition="above">access_time</md-icon>
+          <h4 md-line>{{spell.cooldownBurn | spaceOutBurnout}}</h4>
+        </md-list-item>
+
+        <h3 md-subheader>Cost</h3>
+        <md-list-item>
+          <md-icon md-list-icon color="warn" [mdTooltip]="spell.costBurn | spaceOutBurnout" mdTooltipPosition="above">battery_charging_full</md-icon>
+          <h4 md-line>{{spell.costBurn | spaceOutBurnout}}</h4>
+        </md-list-item>
+
+        <h3 md-subheader>Range</h3>
+        <md-list-item>
+          <md-icon md-list-icon color="warn" [mdTooltip]="spell.rangeBurn | spaceOutBurnout" mdTooltipPosition="above">send</md-icon>
+          <h4 md-line>{{spell.rangeBurn | spaceOutBurnout}}</h4>
+        </md-list-item>
+
+      </md-list>
+    </md-card-content>
+  </md-card>
+</div>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { ChampionListDto, StaticChampionListDto } from './dto';
+import { ChampionListDto, StaticChampionListDto, ChampionView } from './dto';
 import { Http, URLSearchParams } from '@angular/http';
 
 import { duration, FromTo } from 'moment';
@@ -16,6 +16,7 @@ const API_KEY = `RGAPI-d6840698-71d4-43fa-898e-25066fadafc1`;
 const PlatformApi = (path) => FixCors(`https://eun1.api.riotgames.com/lol/platform/v3/${path}`);
 const StaticDataApi = (path) => FixCors(`https://eun1.api.riotgames.com/lol/static-data/v3/${path}`);
 
+
 @Injectable()
 export class RiotApi {
   static CACHE_VERSION_TOKEN = '[LolApiCache] version';
@@ -27,6 +28,10 @@ export class RiotApi {
   private _platformChampions: ChampionListDto | undefined  = undefined;
   private _dataLoaded = new BehaviorSubject<boolean>(false);
   private _version: string | undefined = undefined;
+
+  public get staticResourcesVersion(): string {
+    return this.storage.retrieve<string>(RiotApi.CACHE_VERSION_TOKEN);
+  }
 
   private set staticVersion(version: string) {
     this._version = version;
@@ -56,6 +61,22 @@ export class RiotApi {
   public championImageUrl(path: string) {
     // return `http://ddragon.leagueoflegends.com/cdn/${this.staticVersion}/img/champion/${path}`;
     return `./assets/mock/images/${path}`;
+  }
+
+  public championView(id: number): ChampionView | null {
+    if (!this.champions || !this.staticChampions) {
+      return null;
+    }
+
+    const platformData = this.champions.filter(champion => champion.id === id);
+    if (platformData.length === 0) {
+      return null;
+    }
+
+    return {
+      ...platformData[0],
+      data: this.staticChampions.data[this.staticChampions.keys[id]]
+    };
   }
 
   private loadData(): Observable<any> {

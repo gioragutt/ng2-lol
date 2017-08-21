@@ -1,0 +1,28 @@
+<md-toolbar color="primary">
+  <a [routerLink]="''" mdIconButton mdTooltip="Back to Champions" mdTooltipPosition="right">
+    <md-icon class="example-icon" color="accent">arrow_back</md-icon>
+  </a>
+  <span>{{champion.data.name}}</span>
+</md-toolbar>
+<md-card class="champion-card">
+  <md-card-header>
+    <img md-card-avatar [src]="championImage(champion.data.image.full)"/>
+    <md-card-title>{{champion.data.name}}</md-card-title>
+    <md-card-subtitle>
+      {{champion.data.title | titlecase}}
+      <app-champion-tags [tags]="champion.data.tags"></app-champion-tags>
+    </md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <nav md-tab-nav-bar>
+      <a md-tab-link
+        *ngFor="let link of navLinks"
+        [routerLink]="link.path"
+        routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive">
+        {{link.label}}
+      </a>
+    </nav>
+    <router-outlet></router-outlet>
+  </md-card-content>
+</md-card>

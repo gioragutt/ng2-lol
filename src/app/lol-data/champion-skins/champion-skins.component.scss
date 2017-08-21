@@ -1,0 +1,18 @@
+.skin-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    span {
+        text-align: center;
+        // font-weight: bold;
+        font-size: 24px;
+    }
+    
+    .skin-image {
+        width: 100%;
+        max-width: 850px;
+        margin: auto;
+    }
+}

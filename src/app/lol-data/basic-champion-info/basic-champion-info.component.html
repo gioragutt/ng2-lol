@@ -1,0 +1,16 @@
+ <md-list>
+
+  <h3 md-subheader>Info</h3>
+  <md-list-item *ngFor="let info of champion.data.info | iterateChampionInfo">
+    <md-icon md-list-icon color="warn">info</md-icon>
+    <h4 md-line>{{info.name | titlecase}}</h4>
+    <md-progress-bar md-line
+      class="example-margin"
+      color="primary"
+      [value]="info.value * 10"
+      [mdTooltip]="info.value + ' / 10'"
+      mdTooltipPosition="above"
+    ></md-progress-bar>
+  </md-list-item>
+
+</md-list> 

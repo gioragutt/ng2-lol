@@ -1,0 +1,10 @@
+<md-tab-group>
+  <md-tab *ngFor="let skin of skins" [label]="titleForSkin(skin) | titlecase">
+    <div class="skin-image-wrapper">
+      <span>
+        <em>{{skin.name | titlecase}}</em>
+      </span>
+      <img class="skin-image" md-card-image [src]="skin.url" />
+    </div>
+  </md-tab>
+</md-tab-group>

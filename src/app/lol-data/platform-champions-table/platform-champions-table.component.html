@@ -1,9 +1,10 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <md-input-container floatPlaceholder="never">
-      <input mdInput #filter placeholder="Filter users">
+      <input mdInput #filter placeholder="Search champion">
     </md-input-container>
   </div>
+
   <md-table [dataSource]="dataSource" mdSort color="secondary" class="platform-champions-table">
     <ng-container cdkColumnDef="image">
       <md-header-cell *cdkHeaderCellDef>#</md-header-cell>
@@ -56,6 +57,10 @@
     </ng-container>
 
     <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *cdkRowDef="let row; columns: displayedColumns;" [style.background]="row.freeToPlay ? 'lightgreen' : 'inherit'"></md-row>
+    <md-row
+      *cdkRowDef="let row; columns: displayedColumns;"
+      [style.background]="row.freeToPlay ? 'lightgreen' : 'inherit'"
+      (dblclick)="redirectToChampionPage(row.id)"
+    ></md-row>
   </md-table>
 </div>

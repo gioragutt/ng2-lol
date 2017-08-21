@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -9,6 +10,15 @@ import {
   MdTableModule,
   MdInputModule,
   MdSortModule,
+  MdButtonModule,
+  MdToolbarModule,
+  MdIconModule,
+  MdCardModule,
+  MdTabsModule,
+  MdChipsModule,
+  MdListModule,
+  MdProgressBarModule,
+  MdTooltipModule,
 } from '@angular/material';
 
 export {
@@ -20,15 +30,28 @@ const MATERIAL_MODULES = [
   MdTableModule,
   MdInputModule,
   MdSortModule,
+  MdButtonModule,
+  MdToolbarModule,
+  MdIconModule,
+  MdCardModule,
+  MdTabsModule,
+  MdChipsModule,
+  MdListModule,
+  MdProgressBarModule,
+  MdTooltipModule,
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     BrowserAnimationsModule,
     ...MATERIAL_MODULES
   ],
-  exports: MATERIAL_MODULES
+  exports: [
+    RouterModule,
+    ...MATERIAL_MODULES
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

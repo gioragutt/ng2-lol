@@ -6,18 +6,16 @@ import { AppComponent } from './app.component';
 
 import { LolApiModule } from './lol-api';
 import { SharedModule } from './shared';
-import { PlatformChampionsTableComponent } from './platform-champions-table/platform-champions-table.component';
-import { ChampionInfoPageComponent } from './champion-info-page/champion-info-page.component';
+import { LolDataModule } from './lol-data/lol-data.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PlatformChampionsTableComponent,
-    ChampionInfoPageComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    LolDataModule,
     LolApiModule.forRoot(),
     SharedModule.forRoot(),
   ],

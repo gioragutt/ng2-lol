@@ -1,0 +1,23 @@
+<md-list>
+
+  <h3 md-subheader>Resource</h3>
+  <md-list-item>
+    <md-icon md-list-icon color="warn">data_usage</md-icon>
+    <h4 md-line>{{champion.data.partype}}</h4>
+  </md-list-item>
+
+  <md-divider></md-divider>
+
+  <h3 md-subheader>Stats</h3>
+  <md-list-item *ngFor="let info of champion.data.stats | iterateChampionInfo">
+    <md-icon md-list-icon color="warn" [mdTooltip]="(info.name | prettifyChampionStat:champion.data.partype | titlecase) + ' ' + info.value"
+      mdTooltipPosition="above">
+      tune
+    </md-icon>
+    <h4 class="stat-name" md-line>
+      {{info.name | prettifyChampionStat:champion.data.partype | titlecase}}
+      <span><b><em>{{info.value}}</em></b></span>
+    </h4>
+  </md-list-item>
+
+</md-list>

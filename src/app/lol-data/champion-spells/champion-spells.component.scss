@@ -1,0 +1,23 @@
+.spell-image {
+    float: left;
+    margin-right: 8px;
+}
+
+.spell-card-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: stretch;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: column;
+
+    .spell-card {
+        flex: 1;
+        margin: 4px;
+    }
+
+    .spell-description {
+        margin-top: 16px;
+        font-weight: bold;
+    }
+}

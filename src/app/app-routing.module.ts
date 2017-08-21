@@ -1,21 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlatformChampionsTableComponent } from './platform-champions-table/platform-champions-table.component';
-import { ChampionInfoPageComponent } from './champion-info-page/champion-info-page.component';
+import {
+  BasicChampionInfoComponent,
+  ChampionInfoPageComponent,
+  ChampionInfoPageLoaderComponent,
+  PlatformChampionsTableComponent,
+  ChampionSkinsComponent,
+  ChampionStatsComponent,
+  ChampionSpellsComponent
+} from './lol-data';
 
 const routes: Routes = [
   {
-    path: 'champ',
+    path: 'champions',
     children: [
       { path: '', component: PlatformChampionsTableComponent },
-      { path: ':id', component: ChampionInfoPageComponent },
+      {
+        path: ':id', component: ChampionInfoPageLoaderComponent,
+        children: [
+          { path: 'info', component: BasicChampionInfoComponent },
+          { path: 'skins', component: ChampionSkinsComponent },
+          { path: 'stats', component: ChampionStatsComponent },
+          { path: 'spells', component: ChampionSpellsComponent },
+          { path: '**', pathMatch: 'full', redirectTo: 'info' }
+        ]
+      },
     ]
   },
-  { path: '**', pathMatch: 'full', redirectTo: '/champ' }
+  { path: '**', pathMatch: 'full', redirectTo: '/champions' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
